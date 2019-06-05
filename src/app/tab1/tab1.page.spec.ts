@@ -5,6 +5,7 @@ import { Tab1Page } from "./tab1.page";
 import { isGeneratedFile } from "@angular/compiler/src/aot/util";
 import { ExpectedConditions } from "protractor";
 import { ngDevModeResetPerfCounters } from "@angular/core/src/render3/ng_dev_mode";
+import { testUserAgent } from "@ionic/core";
 
 describe("Tab1Page", () => {
   let component: Tab1Page;
@@ -31,6 +32,28 @@ describe("Tab1Page", () => {
     let data = component.testTypeScript();
 
     console.log(data);
+  });
+
+  it("Method Decorator", () => {
+    class Sample {
+      @fixedValue("world")
+      test() {
+        return "hello";
+      }
+    }
+    function fixedValue(value: any) {
+      return (
+        target: any,
+        propertyKey: string,
+        descriptor: PropertyDescriptor
+      ) => {
+        descriptor.value = () => value;
+      };
+    }
+    const sample = new Sample();
+    console.log(sample.test());
+    let result = sample.test();
+    expect(result).toEqual("world");
   });
 
   it("Class Decorators", () => {
