@@ -30,6 +30,24 @@ describe("Tab1Page", () => {
     console.log(data);
   });
 
+  it("Function", () => {
+    console.log("on the variable declaration");
+    let size: (str: string) => number = function(str) {
+      return str.length;
+    };
+    let sizeOfString = size("Tamanho da frase");
+    console.log("sizeOfString", sizeOfString);
+    expect(sizeOfString).toEqual(16);
+
+    console.log("on the function declaration side");
+    let multiply = function(v1: number, v2: number): number {
+      return v1 * v2;
+    };
+    let result = multiply(2, 2);
+    console.log("Mutiply 2, 2: ", result);
+    expect(result).toEqual(4);
+  });
+
   it("Union Type", () => {
     let stringOrNumber: string | number = "Hello World";
     console.log("stringOrNumber: ", stringOrNumber);
