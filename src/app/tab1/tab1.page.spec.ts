@@ -34,6 +34,23 @@ describe("Tab1Page", () => {
     console.log(data);
   });
 
+  // it("Property Decorator", () => {
+  //   class Sample {
+  //     @fixedValue("world")
+  //     value: string = "hello";
+  //   }
+  //   function fixedValue(value: any) {
+  //     return (target: any, propertyKey: string) => {
+  //       return {
+  //         value
+  //       };
+  //     };
+  //   }
+  //   const sample = new Sample();
+  //   console.log(sample.value);
+  //   expect(sample.value).toEqual("hello");
+  // });
+
   it("Method Decorator", () => {
     class Sample {
       @fixedValue("world")
