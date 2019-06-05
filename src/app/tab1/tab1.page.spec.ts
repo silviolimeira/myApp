@@ -30,6 +30,44 @@ describe("Tab1Page", () => {
     console.log(data);
   });
 
+  it("Function parameters fixed, optional and optional with value", () => {
+    function addOptionalParameter(p1: number, p2: number, p3?: number) {
+      let result = p1 + p2;
+      console.log("p1 + p2");
+      if (p3) result += p3;
+      console.log("p3: ", p3);
+      return result;
+    }
+    const retorno1 = addOptionalParameter(1, 2);
+    console.log("retorno1: ", retorno1);
+    expect(retorno1).toEqual(3);
+    const retorno2 = addOptionalParameter(1, 2, 3);
+    console.log("retorno2: ", retorno2);
+    expect(retorno2).toEqual(6);
+
+    function delay(func: () => void, timeout = 1000) {
+      setTimeout(func, timeout);
+    }
+    delay(() => console.log("Hello"));
+    delay(() => console.log("Hello"), 3000);
+  });
+
+  // it("Use function types in high-order functions", () => {
+  //   function forEach(array: any[], iterator: (any) => void) {
+  //     for (let item in array) {
+  //       iterator(item);
+  //     }
+  //   }
+  //   // forEach([11, 22, 33], item => console.log(item));
+  //   const result = [];
+  //   forEach([4, 5, 6], item => {
+  //     result.push(item);
+  //     console.log(item);
+  //   });
+  //   console.log("result: ", result);
+  //   expect(result).toEqual([4, 5, 6]);
+  // });
+
   it("Copy array items", () => {
     const items = ["item1", "item2", "item3"];
     const copy = [];
