@@ -30,6 +30,17 @@ describe("Tab1Page", () => {
     console.log(data);
   });
 
+  it("Copy array items", () => {
+    const items = ["item1", "item2", "item3"];
+    const copy = [];
+
+    items.forEach(function(item) {
+      copy.push(item);
+    });
+    console.log(copy);
+    expect(copy).toEqual(["item1", "item2", "item3"]);
+  });
+
   it("Declaring fuction types", () => {
     console.log("on the variable declaration");
     let size: (str: string) => number = function(str) {
