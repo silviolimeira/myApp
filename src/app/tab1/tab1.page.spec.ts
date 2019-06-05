@@ -32,6 +32,48 @@ describe("Tab1Page", () => {
     console.log(data);
   });
 
+  it("Interfaces as classes contracts", () => {
+    interface DataLoader {
+      load(): string;
+    }
+    class DatabaseLoader implements DataLoader {
+      load() {
+        return "DB";
+      }
+    }
+    class NetworkLoader implements DataLoader {
+      load() {
+        return "Network";
+      }
+    }
+    let dataLoader: DataLoader = new DatabaseLoader();
+    let result = dataLoader.load();
+    console.log("result: ", result);
+    expect(result).toEqual("DB");
+    let networkLoader = new NetworkLoader();
+    let resultNL = networkLoader.load();
+    console.log("resultNL: ", resultNL);
+    expect(resultNL).toEqual("Network");
+  });
+
+  it("Use interface to describe the shape of values", () => {
+    // interface Iterator {
+    //   (item: any): void;
+    // }
+    // function forEach(array: any, iterator: Iterator) {
+    //   for (let item in array) {
+    //     console.log(">", item);
+    //     iterator(item);
+    //   }
+    // }
+    // forEach([2, 4, 6], item => console.log(item));
+
+    function logArrayElements(element: any, index: any, array: any) {
+      console.log("a[" + index + "] = " + element);
+    }
+    [2, 4, 6].forEach(logArrayElements);
+  });
+
   it("Interfaces", () => {
     interface User {
       name: string;
