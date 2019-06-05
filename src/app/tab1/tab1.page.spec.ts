@@ -1,16 +1,16 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { Tab1Page } from './tab1.page';
+import { Tab1Page } from "./tab1.page";
 
-describe('Tab1Page', () => {
+describe("Tab1Page", () => {
   let component: Tab1Page;
   let fixture: ComponentFixture<Tab1Page>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [Tab1Page],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
   }));
 
@@ -20,7 +20,98 @@ describe('Tab1Page', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
+  });
+
+  it("should test TypeScript", () => {
+    let data = component.testTypeScript();
+
+    console.log(data);
+  });
+
+  it("Enum Type", () => {
+    enum Status {
+      Started,
+      Stopped,
+      Error
+    }
+    let status: Status = Status.Stopped;
+    console.log("Status Stopped: ", status);
+    expect(status).toEqual(1);
+
+    enum Permission {
+      Read = 1,
+      Write = 2,
+      Execute = 4
+    }
+    let permission = Permission.Read | Permission.Write;
+    console.log("permission: ", permission);
+    expect(permission).toEqual(3);
+
+    {
+      console.log("enum textual format:");
+      let status: string = Status[1];
+      console.log("enum textual format for 1 Stopped: ", Status[1]);
+      expect(status).toEqual("Stopped");
+    }
+  });
+
+  it("Tuple Type", () => {
+    let points: [number, number, string] = [10, 10, "p1"];
+    console.log("points: ", points);
+    expect(points).toEqual([10, 10, "p1"]);
+  });
+
+  it("Array Type", () => {
+    let strings: string[] = ["a", "b", "c"];
+    console.log("strings: ", strings);
+    expect(strings).toEqual(["a", "b", "c"]);
+
+    let numbers: number[] = [1, 2, 3];
+    console.log("numbers: ", numbers);
+    expect(numbers).toEqual([1, 2, 3]);
+  });
+
+  it("Test TypeScript", () => {
+    var port = 8080;
+    port = "9090";
+
+    console.log(port);
+  });
+
+  it("Null and Undefined - Types", () => {
+    let v1: null = null;
+    let v2: undefined = undefined;
+
+    console.log("v1 null:", v1);
+    console.log("v2 undefined: ", undefined);
+  });
+
+  it("String Type", () => {
+    let text: string = "Helo World";
+    console.log("text string: ", text);
+    console.log("ES6 template literals");
+    let a: number = 1;
+    let b: number = 2;
+    let result: string = `${a} + ${b} = ${a + b}`;
+    console.log("ES6 template literals: `${a} + ${b} = ${a + b}`");
+    expect(result).toEqual("1 + 2 = 3");
+  });
+
+  it("Number - Basic Type", () => {
+    let n1: number = 20; //decimal
+    console.log("20 decimal n1: ", n1);
+    let n2: number = 0x14; // hexadecimal
+    console.log("0x14 hexadecimal n2: ", n2);
+    let n3: number = 0b10100; // binary
+    console.log("0b10100 binary n3: ", n3);
+  });
+
+  it("Boolean  - Basic Type", () => {
+    let isActive: boolean = false;
+    console.log("isActive: ", isActive);
+    isActive = true;
+    console.log("isActive: ", isActive);
   });
 });
