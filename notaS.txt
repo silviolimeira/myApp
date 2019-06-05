@@ -1,0 +1,32 @@
+# Script for create the app. Change --project-id, ionic start myApp1 name and --package-id.
+$ ionic start appName tabs --type=angular --cordova --no-deps --no-link --project-id=br.com.sicemal.appName --package-id=appName
+or simple form:
+$ ionic start appName tabs # for tabs app
+$ ionic start appName blank # for blank app
+
+# Start the app with:
+$ ionic serve -c --port=8100 --browser=chrome
+
+# Listing ionic start projects
+$ ionic start --list 
+
+#   Use chrome DevTools for Android Debugging
+# in the url type
+chrome://inspect/#devices
+#   you should see a list of running apps
+# Clicking inspect launches the DevTools to inspect the running app
+
+# Android
+# 1) add the Android platform to project,
+$ ionic cordova platform add android --save
+#   before install android studio and create an Android Virtual Device (AVC)
+# 2) Now the app can be build
+$ ionic cordova build android
+# 3) Starting the emulator
+$ ionic cordova emulate android
+
+# For running on the device
+$ ionic cordova run android --livereload
+
+
+
