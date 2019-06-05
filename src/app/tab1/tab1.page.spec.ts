@@ -2,6 +2,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { Tab1Page } from "./tab1.page";
+import { isGeneratedFile } from "@angular/compiler/src/aot/util";
 
 describe("Tab1Page", () => {
   let component: Tab1Page;
@@ -28,6 +29,15 @@ describe("Tab1Page", () => {
     let data = component.testTypeScript();
 
     console.log(data);
+  });
+
+  it("Using ellipses, collect remaining unmatched arguments", () => {
+    function format(...values: string[]): string {
+      return values.join(",");
+    }
+    let result = format("a", "b", "c");
+    console.log("result: ", result);
+    expect(result).toEqual("a,b,c");
   });
 
   it("Function parameters fixed, optional and optional with value", () => {
