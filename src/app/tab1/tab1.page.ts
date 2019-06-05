@@ -11,4 +11,12 @@ export class Tab1Page {
   testTypeScript() {
     return "Hello Type Script";
   }
+
+  sayHello(): void {
+    console.log("Hello");
+  }
+
+  neverHappens(): never {
+    throw new Error("Boom!");
+  }
 }

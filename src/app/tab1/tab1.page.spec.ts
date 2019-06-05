@@ -30,6 +30,46 @@ describe("Tab1Page", () => {
     console.log(data);
   });
 
+  it("Union Type", () => {
+    let stringOrNumber: string | number = "Hello World";
+    console.log("stringOrNumber: ", stringOrNumber);
+    expect(stringOrNumber).toEqual("Hello World");
+    stringOrNumber = 3;
+    expect(stringOrNumber).toEqual(3);
+    stringOrNumber = "Test";
+    expect(stringOrNumber).toBe("Test");
+
+    type TrafficColor = "Red" | "Greean" | "Yellow";
+    let color: TrafficColor = "Red";
+    console.log("color: ", color);
+    expect(color).toEqual("Red");
+  });
+
+  it("Never Special Type", () => {
+    //let data = component.neverHappens();
+    console.log("Never Special Type");
+  });
+
+  it("Void Type", () => {
+    let data = component.sayHello();
+    console.log("data:", data);
+    expect(data).toEqual(undefined);
+  });
+
+  it("Type Any, bypass compiling check on integragion with javascript", () => {
+    let val: any = "Hello World";
+    expect(val).toEqual("Hello World");
+    console.log("val: ", val);
+
+    val = 100;
+    console.log("val: ", 100);
+    expect(val).toEqual(100);
+
+    val = true;
+    console.log("val: ", val);
+    expect(val).toEqual(true);
+  });
+
   it("Enum Type", () => {
     enum Status {
       Started,
