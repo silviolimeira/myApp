@@ -30,7 +30,7 @@ describe("Tab1Page", () => {
     console.log(data);
   });
 
-  it("Function", () => {
+  it("Declaring fuction types", () => {
     console.log("on the variable declaration");
     let size: (str: string) => number = function(str) {
       return str.length;
