@@ -4,6 +4,7 @@ import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 import { Tab1Page } from "./tab1.page";
 import { isGeneratedFile } from "@angular/compiler/src/aot/util";
 import { ExpectedConditions } from "protractor";
+import { ngDevModeResetPerfCounters } from "@angular/core/src/render3/ng_dev_mode";
 
 describe("Tab1Page", () => {
   let component: Tab1Page;
@@ -30,6 +31,33 @@ describe("Tab1Page", () => {
     let data = component.testTypeScript();
 
     console.log(data);
+  });
+
+  it("Class Decorators", () => {
+    @refCount("sample")
+    class Sample {
+      constructor(value: string) {}
+    }
+    const refCountMap = {};
+    function refCount(name: string) {
+      return (constructor: any) => {
+        const originalCtor = constructor;
+        const newCtor: any = function(...args) {
+          if (!refCountMap[name]) {
+            refCountMap[name] = 1;
+          } else {
+            refCountMap[name]++;
+          }
+          return originalCtor.apply(this, args);
+        };
+        newCtor.prototype = originalCtor.prototype;
+        return newCtor;
+      };
+    }
+    const s1 = new Sample("hello");
+    const s2 = new Sample("world");
+    console.log(refCountMap["sample"]);
+    expect(refCountMap["sample"]).toEqual(2);
   });
 
   it("Classes and Abstract Class", () => {
