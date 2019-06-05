@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { Tab1Page } from "./tab1.page";
 import { isGeneratedFile } from "@angular/compiler/src/aot/util";
+import { ExpectedConditions } from "protractor";
 
 describe("Tab1Page", () => {
   let component: Tab1Page;
@@ -29,6 +30,25 @@ describe("Tab1Page", () => {
     let data = component.testTypeScript();
 
     console.log(data);
+  });
+
+  it("Interfaces", () => {
+    interface User {
+      name: string;
+      email: string;
+      age: number;
+    }
+    function processUser(user: User) {
+      return user.name;
+    }
+
+    const result = processUser({
+      name: "Silvio",
+      email: "silvio@gmail.com",
+      age: 35
+    });
+    console.log("expect user.name = Silvio");
+    expect(result).toEqual("Silvio");
   });
 
   it("Using ellipses, collect remaining unmatched arguments", () => {
