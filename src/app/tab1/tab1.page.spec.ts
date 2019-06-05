@@ -32,6 +32,48 @@ describe("Tab1Page", () => {
     console.log(data);
   });
 
+  it("Classes and Abstract Class", () => {
+    abstract class Shape {
+      abstract area(): number;
+    }
+    class Rectangle extends Shape {
+      private width: number;
+      private height: number;
+      constructor(width: number, height: number) {
+        super();
+        this.width = width;
+        this.height = height;
+      }
+      area() {
+        return this.width * this.height;
+      }
+    }
+    class Square extends Rectangle {
+      constructor(width: number) {
+        super(width, width);
+      }
+    }
+    class Circle extends Shape {
+      private radius: number;
+      constructor(radius: number) {
+        super();
+        this.radius = radius;
+      }
+      area() {
+        return Math.PI * this.radius * this.radius;
+      }
+    }
+    let rectangle = new Rectangle(5, 4);
+    let square = new Square(10);
+    let circle = new Circle(10);
+    console.log("rectangle area: ", rectangle.area());
+    expect(rectangle.area()).toEqual(20);
+    console.log("square.area: ", square.area());
+    expect(square.area()).toEqual(100);
+    console.log(circle.area());
+    expect(circle.area()).toEqual(314.1592653589793);
+  });
+
   it("Interfaces as classes contracts", () => {
     interface DataLoader {
       load(): string;
